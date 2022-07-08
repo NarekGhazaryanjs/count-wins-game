@@ -3,12 +3,14 @@ import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Text from "../Text/Text";
 import classes from '../../ui/Global.module.css';
+localStorage.setItem('count', 0) 
+localStorage.setItem('isGameOver', 'false');
+let over = false
 
 const Block = () => {
     const [blockCount,setBlockCount] = useState('');
     const [show,setShow] = useState(false);
     const [canClick,setCanClick] = useState(true);
-    const [gameOver,setGameOver] = useState(false)
     
    
     const changeShowSatement = () => {
@@ -17,26 +19,28 @@ const Block = () => {
         ];
         if(canClick) {
             setShow(!show)
-            const skyCount = possibleItems[Math.ceil(Math.random() * 25)];
+            const skyCount = possibleItems[Math.ceil(Math.random() * 24)];
             setBlockCount(skyCount);
+            
+            if(skyCount  !== 'bomb') {
+                localStorage.setItem('count', Number(localStorage.getItem('count'))  + skyCount)
+            }
             console.log(skyCount)
             if(skyCount === 'bomb') {
-                setCanClick(false)
-                setGameOver(!gameOver);
-                setTimeout(() => {
-                  window.location.reload()
-                }, 1000)
+                setCanClick(false);
+                over = true
+                localStorage.setItem('isGameOver', 'true')
             }
             setCanClick(false);
         }
     }
  
     return(
-       !gameOver ? <Card className={classes.block}>
+        <Card className={classes.block}>
             <Button className={classes.button} onClick={changeShowSatement}> good luck  </Button>
             { show && <Text> {blockCount} </Text>}  
-        </Card> : <div>game over</div>
+        </Card> 
     )
 }
 
-export default Block
+export {Block,over}
