@@ -16,11 +16,11 @@ const Block = () => {
    
     const changeShowSatement = () => {
         const possibleItems = [
-            1,2,3,4,5,6,7,8,'bomb', 9,10,11,12,13,14,15,16,17,18,19,20,'bomb', 'bomb', 'bomb', 'bomb'
+            2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, 21, 22, 23, 24
         ];
         if(canClick) {
             setShow(!show)
-            const skyCount = possibleItems[Math.ceil(Math.random() * 24)];
+            const skyCount = possibleItems[Math.ceil(Math.random() * 22)];
             setBlockCount(skyCount);
             localStorage.setItem('clickedTimesCount', Number(localStorage.getItem('clickedTimesCount')) + 1)
             

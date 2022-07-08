@@ -1,7 +1,8 @@
 
+
 const Card = (props) => {
     return (
-        <section className={props.className}>
+        <section onClick={props.onClick} className={props.className}>
             {props.children}
         </section>
     )
