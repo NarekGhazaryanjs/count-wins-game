@@ -5,6 +5,7 @@ import Text from "../Text/Text";
 import classes from '../../ui/Global.module.css';
 localStorage.setItem('count', 0) 
 localStorage.setItem('isGameOver', 'false');
+localStorage.setItem('clickedTimesCount', 0)
 let over = false
 
 const Block = () => {
@@ -15,12 +16,13 @@ const Block = () => {
    
     const changeShowSatement = () => {
         const possibleItems = [
-            1,'bomb','bomb','bomb','bomb','bomb','bomb',2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,'bomb','bomb','bomb'
+            1,2,3,4,5,6,7,8,'bomb', 9,10,11,12,13,14,15,16,17,18,19,20,'bomb', 'bomb', 'bomb', 'bomb'
         ];
         if(canClick) {
             setShow(!show)
             const skyCount = possibleItems[Math.ceil(Math.random() * 24)];
             setBlockCount(skyCount);
+            localStorage.setItem('clickedTimesCount', Number(localStorage.getItem('clickedTimesCount')) + 1)
             
             if(skyCount  !== 'bomb') {
                 localStorage.setItem('count', Number(localStorage.getItem('count'))  + skyCount)
