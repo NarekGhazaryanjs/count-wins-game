@@ -37,8 +37,8 @@ const App = () => {
   }
 
   const openBox = () => {
-    setBonusWin(Math.ceil(Math.random()) * 8)
-    setIsBoxOpened(true)
+    setBonusWin(Math.ceil(Math.random()) * 4)
+    setIsBoxOpened(true);
   }
 
   return (
@@ -65,7 +65,9 @@ const App = () => {
           <Card onClick={openBox} className={classes['bonus-box']}> open box </Card>
           <Card onClick={openBox} className={classes['bonus-box']}> open box </Card>
           <Card onClick={openBox} className={classes['bonus-box']}> open box </Card>
-      </Card>) : <div> hello world </div>)
+      </Card>) : <Card className={classes['bonus-over']}> 
+         Congratulation you win bonus {bonusWin} multiple times  with  {win}  your Final win is {bonusWin * win}
+      </Card>)
      
 
   )
